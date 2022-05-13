@@ -1,1 +1,4 @@
 *.swp
+.venv
+cx-oracle/libs/
+*/__pycache__/*

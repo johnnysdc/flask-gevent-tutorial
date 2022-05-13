@@ -1,0 +1,67 @@
+version: "3.7"
+services:
+  # oracledb:
+  #   image: store/oracle/database-enterprise:12.2.0.1-slim
+  #   container_name: oracle12
+  #   ports:
+  #     - '1521:1521'
+  #     - '5500:5500'
+  #   expose:
+  #     - '1521'
+  #     - '5500'
+  flask_app:
+    init: true
+    build: 
+      context: ./cx-oracle
+      dockerfile: Dockerfile-gunicorn
+    environment: 
+      - PORT_APP=3000
+      - HOST_SLOW_API=slow_api
+      - PORT_API=4000
+      - WORKERS=4
+      - ASYNC_CORES=2000
+      - MODULE=app
+      - DB_USER=sys
+      - DB_PASSWORD=Oradoc_db1
+      - DB_HOST=192.168.1.130
+      # - DB_HOST=oracledb
+      - DB_PORT=1521
+      - DB_SERVICE=ORCLCDB.localdomain
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      - slow_api
+      # - oracledb
+
+  flask_app_2:
+    init: true
+    build: 
+      context: ./cx-oracle
+      dockerfile: Dockerfile-gunicorn
+    environment: 
+      - PORT_APP=3001
+      - HOST_SLOW_API=slow_api
+      - PORT_API=4000
+      - WORKERS=4
+      - ASYNC_CORES=2000
+      - MODULE=patched
+      - DB_USER=sys
+      - DB_PASSWORD=Oradoc_db1
+      - DB_HOST=192.168.1.130
+      # - DB_HOST=oracledb
+      - DB_PORT=1521
+      - DB_SERVICE=ORCLCDB.localdomain
+    ports:
+      - "127.0.0.1:3001:3001"
+    depends_on:
+      - slow_api
+      # - oracledb
+
+  slow_api:
+    init: true
+    build: ./slow_api
+    environment: 
+      - PORT=4000
+    expose:
+      - "4000"
+

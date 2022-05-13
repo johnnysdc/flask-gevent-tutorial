@@ -1,0 +1,1 @@
+docker run -d -it --name OracleDB -p 1521:1521 -p 5500:5500 store/oracle/database-enterprise:12.2.0.1-slim

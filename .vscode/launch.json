@@ -1,0 +1,30 @@
+{
+   // Use IntelliSense to learn about possible attributes.
+   // Hover to view descriptions of existing attributes.
+   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+   "version": "0.2.0",
+   "configurations": [
+      {
+         "name": "Python: App",
+         "type": "python",
+         "request": "launch",
+         "program": "${workspaceFolder}/cx-oracle/app.py",
+         "console": "integratedTerminal",
+         "env": {
+            "FLASK_ENV": "development",
+            "PORT": "3000",
+            "PORT_API": "4000",
+            "DB_USER": "sys",
+            "DB_PASSWORD": "Oradoc_db1",
+            "DB_HOST": "127.0.0.1",
+            // "DB_HOST":"oracledb",
+            "DB_PORT": "1521",
+            "DB_SERVICE": "ORCLCDB.localdomain",
+            "GEVENT_SUPPORT": "True",
+            "gevent": "true"
+            //"STAGE": "aws",
+            // "OVERRIDE_WITH_CONFIGMAP":"True"
+         }
+      }
+   ]
+}
