@@ -28,7 +28,7 @@ CMD uwsgi --master \
   --single-interpreter \
   --workers $WORKERS \
   --gevent $ASYNC_CORES \
-  --protocol http \
+  --protocol $PROTOCOL \
   --socket 0.0.0.0:$PORT_APP \
   --module $MODULE:app
 
